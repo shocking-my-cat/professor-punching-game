@@ -6,7 +6,7 @@ import { InputScreen } from '@/components/input-screen'
 import { PlayingScreen } from '@/components/playing-screen'
 import { EndScreen } from '@/components/end-screen'
 
-export type Step = 'input' | 'playing' | 'end'
+export type Step = 'input' | 'playing' | 'exploding' | 'end'
 export type DamageText = { id: number; x: number; y: number }
 
 const INITIAL_HP = 1000
@@ -32,8 +32,9 @@ export default function Page() {
     setHp((prev) => {
       const next = Math.max(0, prev - 10)
       if (next <= 0) {
-        // defer the transition so the final hit renders first
-        setTimeout(() => setStep('end'), 120)
+        // S1-03: exploding 상태로 먼저 전환 → 800ms 폭발 연출 후 end로
+        setTimeout(() => setStep('exploding'), 120)
+        setTimeout(() => setStep('end'), 950)
       }
       return next
     })
@@ -64,7 +65,7 @@ export default function Page() {
             onSummon={handleSummon}
           />
         )}
-        {step === 'playing' && (
+        {(step === 'playing' || step === 'exploding') && (
           <PlayingScreen
             key="playing"
             profName={profName}
@@ -74,6 +75,7 @@ export default function Page() {
             damageTexts={damageTexts}
             onHit={handleHit}
             onDamageComplete={removeDamageText}
+            exploding={step === 'exploding'}
           />
         )}
         {step === 'end' && <EndScreen key="end" onReset={handleReset} />}

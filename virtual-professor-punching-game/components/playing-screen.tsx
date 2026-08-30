@@ -14,6 +14,8 @@ type Props = {
   damageTexts: DamageText[]
   onHit: (e: React.MouseEvent) => void
   onDamageComplete: (id: number) => void
+  /** S1-03: HP 0 시 폭발 연출 플래그 */
+  exploding?: boolean
 }
 
 export function PlayingScreen({
@@ -24,6 +26,7 @@ export function PlayingScreen({
   damageTexts,
   onHit,
   onDamageComplete,
+  exploding = false,
 }: Props) {
   const [shaking, setShaking] = useState(false)
   const shakeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -78,14 +81,21 @@ export function PlayingScreen({
           )}
         </div>
 
-        <button
+        <motion.button
           type="button"
-          onClick={handleClick}
+          onClick={exploding ? undefined : handleClick}
           aria-label={`${profName} 교수 때리기`}
+          // S1-03: exploding 시 scale-up + 페이드아웃 폭발 연출
+          animate={
+            exploding
+              ? { scale: [1, 1.35, 1.6], opacity: [1, 1, 0], rotate: [0, -8, 12] }
+              : { scale: 1, opacity: 1, rotate: 0 }
+          }
+          transition={exploding ? { duration: 0.75, ease: 'easeIn' } : undefined}
           className={`relative mt-6 select-none rounded-full outline-none ${
-            shaking ? 'animate-prof-shake' : ''
+            shaking && !exploding ? 'animate-prof-shake' : ''
           }`}
-          style={{ cursor: 'crosshair' }}
+          style={{ cursor: exploding ? 'default' : 'crosshair' }}
         >
           <div className="pointer-events-none relative h-72 w-72 overflow-hidden rounded-full border-8 border-primary bg-secondary shadow-2xl">
             <Image
@@ -98,18 +108,18 @@ export function PlayingScreen({
             />
             {/* red hit flash */}
             <AnimatePresence>
-              {shaking && (
+              {(shaking || exploding) && (
                 <motion.div
-                  initial={{ opacity: 0.6 }}
+                  initial={{ opacity: exploding ? 0.9 : 0.6 }}
                   animate={{ opacity: 0 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.12 }}
+                  transition={{ duration: exploding ? 0.7 : 0.12 }}
                   className="absolute inset-0 bg-primary mix-blend-multiply"
                 />
               )}
             </AnimatePresence>
           </div>
-        </button>
+        </motion.button>
 
         <p className="mt-8 animate-pulse text-lg text-muted-foreground">
           👊 교수님을 클릭해서 HP를 0으로 만드세요! 👊

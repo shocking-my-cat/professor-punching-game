@@ -10,10 +10,7 @@ type Props = {
 
 export function EndScreen({ onReset }: Props) {
   useEffect(() => {
-    const duration = 3000
-    const end = Date.now() + duration
-
-    // initial big burst
+    // S1-02: 컴포넌트 언마운트시까지 무한 재생
     confetti({
       particleCount: 200,
       spread: 120,
@@ -21,10 +18,6 @@ export function EndScreen({ onReset }: Props) {
     })
 
     const interval = setInterval(() => {
-      if (Date.now() > end) {
-        clearInterval(interval)
-        return
-      }
       confetti({
         particleCount: 60,
         angle: 60,

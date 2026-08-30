@@ -59,7 +59,11 @@ export function InputScreen({
                   type="text"
                   value={profName}
                   maxLength={10}
-                  onChange={(e) => setProfName(e.target.value)}
+                  onChange={(e) => {
+                    // S1-01: 특수문자 제외 — 한글·영문·숫자·공백만 허용
+                    const filtered = e.target.value.replace(/[^가-힣a-zA-Z0-9\s]/g, '')
+                    setProfName(filtered)
+                  }}
                   placeholder="당신을 괴롭히는 교수님의 이름을 알려주세요."
                   className="w-full rounded-xl border-2 border-border bg-input px-4 py-4 text-lg text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
                 />
