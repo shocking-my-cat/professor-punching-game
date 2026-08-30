@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart } from 'lucide-react'
 import type { DamageText } from '@/app/page'
 
 type Props = {
@@ -38,123 +37,177 @@ export function PlayingScreen({
   function handleClick(e: React.MouseEvent) {
     onHit(e)
     setShaking(false)
-    // restart the shake animation reliably
     requestAnimationFrame(() => setShaking(true))
     if (shakeTimeout.current) clearTimeout(shakeTimeout.current)
     shakeTimeout.current = setTimeout(() => setShaking(false), 110)
   }
+
+  const hpBarColor = isCritical
+    ? 'bg-red-800'
+    : isDanger
+    ? 'bg-red-600'
+    : 'bg-primary'
 
   return (
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className={`bg-grid-pattern relative flex min-h-screen w-full flex-col items-center justify-start px-8 pt-12 transition-colors duration-500 ${
-        isDanger ? 'animate-danger-pulse' : ''
-      }`}
+      transition={{ duration: 0.2 }}
+      className={`bg-halftone flex min-h-screen w-full flex-col ${isDanger ? 'animate-danger-pulse' : ''}`}
       style={{ cursor: 'crosshair' }}
     >
-      {/* HP BAR */}
-      <div className="w-4/5 max-w-5xl">
-        <div className="mb-2 flex items-end justify-between">
-          <span className={`flex items-center gap-2 text-2xl text-primary ${isDanger ? 'animate-pulse' : ''}`}>
-            {/* S2-03: HP 위기 시 Heart 빠른 펄스 */}
-            <Heart className={`h-6 w-6 fill-primary ${isCritical ? 'animate-bounce' : ''}`} /> HP
-          </span>
-          <span className={`font-mono text-3xl ${isDanger ? 'text-primary animate-pulse' : 'text-foreground'}`}>
-            {hp} <span className="text-muted-foreground">/ {maxHp}</span>
-          </span>
+      {/* ── TOP NAV BAR ── */}
+      <header className="w-full bg-primary border-b-4 border-foreground shadow-[0_8px_0_0_#191c1e] z-50 flex-shrink-0">
+        <div className="h-16 max-w-7xl mx-auto px-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-primary-foreground text-2xl">🥊</span>
+            <span className="font-headline text-xl text-primary-foreground tracking-tighter italic">
+              Professor Punch-Out!!
+            </span>
+          </div>
+          <nav className="flex items-center gap-4">
+            <span className="font-label-mono text-xs px-2 py-1 border-2 border-primary-foreground shadow-[4px_4px_0_0_#191c1e]"
+              style={{ color: '#93000b', background: '#ffffff' }}
+            >
+              FIGHT
+            </span>
+            <span className="font-label-mono text-xs text-primary-foreground">SCORES</span>
+            <span className="font-label-mono text-xs text-primary-foreground">GYM</span>
+          </nav>
         </div>
-        <div className="h-12 w-full overflow-hidden rounded-full border-4 border-foreground/20 bg-secondary">
-          <motion.div
-            className={`h-full rounded-full ${
-              isCritical
-                ? 'bg-gradient-to-r from-red-700 to-red-400'
-                : isDanger
-                ? 'bg-gradient-to-r from-orange-600 to-red-500'
-                : 'bg-gradient-to-r from-primary to-accent'
-            }`}
-            animate={{ width: `${hpPct}%` }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          />
+      </header>
+
+      {/* ── HP BAR SECTION ── */}
+      <div className="w-full bg-background border-b-4 border-foreground px-6 py-3 flex-shrink-0">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex justify-between items-center mb-2">
+            <span className="font-label-mono text-xs text-foreground">
+              PROF. {profName.toUpperCase()}
+            </span>
+            <span className={`font-label-mono text-xs font-bold ${isDanger ? 'text-destructive' : 'text-foreground'}`}>
+              HP {hp}/{maxHp}
+            </span>
+          </div>
+          {/* Segmented HP bar — Neo-Brutalist style */}
+          <div className="w-full h-8 border-4 border-foreground bg-muted shadow-brutal-sm overflow-hidden relative">
+            <motion.div
+              className={`h-full ${hpBarColor} relative overflow-hidden`}
+              animate={{ width: `${hpPct}%` }}
+              transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+            >
+              {/* Shimmer stripe */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-bar-shimmer" />
+            </motion.div>
+            {/* Damage marker at 15% */}
+            <div className="absolute top-0 bottom-0 right-0 w-1 bg-foreground z-10" />
+          </div>
         </div>
       </div>
 
-      {/* NAMETAG + AVATAR */}
-      <div className="mt-14 flex flex-col items-center">
-        <div className="z-10 -mb-4 rotate-[-2deg] rounded-lg border-4 border-accent bg-primary px-8 py-2 text-center shadow-xl">
-          <p className="text-3xl tracking-wide text-primary-foreground">{profName} 교수</p>
+      {/* ── BATTLE ARENA ── */}
+      <main className="flex-1 flex items-center justify-center px-6 py-8 relative overflow-hidden">
+        <div className="relative flex flex-col items-center">
+
+          {/* Name tag — tacky sticker style */}
+          <div className="relative z-20 mb-[-1rem]">
+            <div className="bg-red-50 border-4 border-foreground shadow-brutal px-6 py-3 -rotate-2 relative">
+              {/* Tape pieces */}
+              <div className="absolute -top-3 -left-4 w-10 h-5 bg-muted border-2 border-foreground rotate-12 opacity-80" />
+              <div className="absolute -top-2 -right-3 w-8 h-5 bg-muted border-2 border-foreground -rotate-12 opacity-80" />
+              <p className="font-label-mono text-xs text-foreground border-b-2 border-foreground pb-1 mb-1 tracking-widest text-center">
+                HELLO, MY NAME IS
+              </p>
+              <p
+                className="font-headline text-2xl md:text-3xl text-destructive text-center tracking-tighter"
+                style={{ WebkitTextStroke: '1.5px #191c1e' }}
+              >
+                {profName.toUpperCase()}
+              </p>
+            </div>
+          </div>
+
+          {/* Professor Avatar */}
+          <motion.button
+            type="button"
+            onClick={exploding ? undefined : handleClick}
+            aria-label={`${profName} 교수 때리기`}
+            animate={
+              exploding
+                ? { scale: [1, 1.35, 1.6], opacity: [1, 1, 0], rotate: [0, -8, 12] }
+                : { scale: 1, opacity: 1, rotate: 0 }
+            }
+            transition={exploding ? { duration: 0.75, ease: 'easeIn' } : undefined}
+            className={`relative z-10 select-none outline-none ${
+              shaking && !exploding ? 'animate-prof-shake' : ''
+            }`}
+            style={{ cursor: exploding ? 'default' : 'crosshair' }}
+          >
+            <div className="relative w-64 h-64 md:w-80 md:h-80 border-4 border-foreground bg-card shadow-brutal-lg overflow-hidden">
+              {/* Hard shadow layer indicator */}
+              <div className="absolute inset-0 z-0" />
+              <Image
+                src="/professor.png"
+                alt={`${profName} 교수 캐릭터`}
+                fill
+                priority
+                draggable={false}
+                className="object-cover select-none pointer-events-none z-10"
+              />
+              {/* Hit flash */}
+              <AnimatePresence>
+                {(shaking || exploding) && (
+                  <motion.div
+                    initial={{ opacity: exploding ? 0.9 : 0.7 }}
+                    animate={{ opacity: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: exploding ? 0.7 : 0.1 }}
+                    className="absolute inset-0 bg-primary mix-blend-multiply z-20"
+                  />
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.button>
+
           {profDesc && (
-            <p className="mt-1 max-w-xs text-pretty text-sm text-primary-foreground/80">
+            <p className="mt-3 font-body-mono text-xs text-muted-foreground text-center max-w-xs">
               {profDesc}
             </p>
           )}
+
+          <p className="mt-4 font-label-mono text-xs text-foreground animate-pulse text-center">
+            👊 CLICK TO HIT — REDUCE HP TO ZERO 👊
+          </p>
         </div>
 
-        <motion.button
-          type="button"
-          onClick={exploding ? undefined : handleClick}
-          aria-label={`${profName} 교수 때리기`}
-          // S1-03: exploding 시 scale-up + 페이드아웃 폭발 연출
-          animate={
-            exploding
-              ? { scale: [1, 1.35, 1.6], opacity: [1, 1, 0], rotate: [0, -8, 12] }
-              : { scale: 1, opacity: 1, rotate: 0 }
-          }
-          transition={exploding ? { duration: 0.75, ease: 'easeIn' } : undefined}
-          className={`relative mt-6 select-none rounded-full outline-none ${
-            shaking && !exploding ? 'animate-prof-shake' : ''
-          }`}
-          style={{ cursor: exploding ? 'default' : 'crosshair' }}
-        >
-          <div className="pointer-events-none relative h-72 w-72 overflow-hidden rounded-full border-8 border-primary bg-secondary shadow-2xl">
-            <Image
-              src="/professor.png"
-              alt={`${profName} 교수 캐릭터`}
-              fill
-              priority
-              draggable={false}
-              className="object-cover"
-            />
-            {/* red hit flash */}
-            <AnimatePresence>
-              {(shaking || exploding) && (
-                <motion.div
-                  initial={{ opacity: exploding ? 0.9 : 0.6 }}
-                  animate={{ opacity: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: exploding ? 0.7 : 0.12 }}
-                  className="absolute inset-0 bg-primary mix-blend-multiply"
-                />
-              )}
-            </AnimatePresence>
-          </div>
-        </motion.button>
+        {/* Floating damage texts */}
+        <div className="pointer-events-none fixed inset-0 z-50">
+          <AnimatePresence>
+            {damageTexts.map((d) => (
+              <motion.div
+                key={d.id}
+                initial={{ opacity: 1, y: 0, scale: 1.1, rotate: Math.random() * 30 - 15 }}
+                animate={{ opacity: 0, y: -60 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+                onAnimationComplete={() => onDamageComplete(d.id)}
+                className="absolute font-headline text-3xl text-primary bg-red-50 border-4 border-foreground shadow-brutal-sm px-3 py-1 -translate-x-1/2 -translate-y-1/2"
+                style={{ left: d.x, top: d.y }}
+              >
+                -10
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </main>
 
-        <p className="mt-8 animate-pulse text-lg text-muted-foreground">
-          👊 교수님을 클릭해서 HP를 0으로 만드세요! 👊
-        </p>
-      </div>
-
-      {/* FLOATING DAMAGE TEXTS */}
-      <div className="pointer-events-none fixed inset-0 z-50">
-        <AnimatePresence>
-          {damageTexts.map((d) => (
-            <motion.span
-              key={d.id}
-              initial={{ opacity: 1, y: 0, scale: 1.2 }}
-              animate={{ opacity: 0, y: -50 }}
-              transition={{ duration: 1, ease: 'easeOut' }}
-              onAnimationComplete={() => onDamageComplete(d.id)}
-              className="absolute -translate-x-1/2 -translate-y-1/2 text-4xl font-black text-primary drop-shadow-[0_2px_0_rgba(0,0,0,0.6)]"
-              style={{ left: d.x, top: d.y }}
-            >
-              -10
-            </motion.span>
-          ))}
-        </AnimatePresence>
-      </div>
+      {/* ── FOOTER ── */}
+      <footer className="w-full bg-foreground text-primary-foreground py-4 border-t-4 border-primary flex-shrink-0">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <span className="font-headline text-base">Tenure Denied © 1994</span>
+          <div className="flex gap-4 text-xl">🎮💀⚠️</div>
+          <span className="font-label-mono text-xs">V.0.6.9-BETA</span>
+        </div>
+      </footer>
     </motion.section>
   )
 }

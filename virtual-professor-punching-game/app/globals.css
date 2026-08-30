@@ -13,11 +13,6 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -36,61 +31,89 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-  --font-sans: var(--font-black-han), 'Black Han Sans', sans-serif;
-  --font-serif: var(--font-noto-serif), 'Noto Serif KR', serif;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+  /* Neo-Brutalist Raucous Arcade Typography */
+  --font-sans: var(--font-anton), 'Anton', sans-serif;
+  --font-mono: var(--font-space-mono), 'Space Mono', monospace;
+  --font-label: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
 }
 
 :root {
-  color-scheme: dark;
-  /* Aggressive red & black stress-relief palette */
-  --background: oklch(0.14 0.02 25);
-  --foreground: oklch(0.97 0.01 60);
-  --card: oklch(0.19 0.03 25);
-  --card-foreground: oklch(0.97 0.01 60);
-  --popover: oklch(0.19 0.03 25);
-  --popover-foreground: oklch(0.97 0.01 60);
-  --primary: oklch(0.58 0.24 27);
-  --primary-foreground: oklch(0.99 0.01 60);
-  --secondary: oklch(0.26 0.04 25);
-  --secondary-foreground: oklch(0.97 0.01 60);
-  --muted: oklch(0.24 0.02 25);
-  --muted-foreground: oklch(0.7 0.03 40);
-  --accent: oklch(0.72 0.18 55);
-  --accent-foreground: oklch(0.15 0.02 25);
-  --destructive: oklch(0.58 0.24 27);
-  --border: oklch(0.3 0.05 25);
-  --input: oklch(0.26 0.04 25);
-  --ring: oklch(0.58 0.24 27);
-  --chart-1: oklch(0.58 0.24 27);
-  --chart-2: oklch(0.72 0.18 55);
-  --chart-3: oklch(0.5 0.2 27);
-  --chart-4: oklch(0.4 0.15 27);
-  --chart-5: oklch(0.3 0.1 27);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.19 0.03 25);
-  --sidebar-foreground: oklch(0.97 0.01 60);
-  --sidebar-primary: oklch(0.58 0.24 27);
-  --sidebar-primary-foreground: oklch(0.99 0.01 60);
-  --sidebar-accent: oklch(0.26 0.04 25);
-  --sidebar-accent-foreground: oklch(0.97 0.01 60);
-  --sidebar-border: oklch(0.3 0.05 25);
-  --sidebar-ring: oklch(0.58 0.24 27);
+  color-scheme: light;
+  /* ── Raucous Arcade Palette ── */
+  --background: #f8f9fb;
+  --foreground: #191c1e;
+  --card: #ffffff;
+  --card-foreground: #191c1e;
+  --popover: #ffffff;
+  --popover-foreground: #191c1e;
+  --primary: #93000b;
+  --primary-foreground: #ffffff;
+  --secondary: #5e5e5e;
+  --secondary-foreground: #ffffff;
+  --muted: #e1e2e4;
+  --muted-foreground: #5b403d;
+  --accent: #b91c1c;
+  --accent-foreground: #ffffff;
+  --destructive: #ba1a1a;
+  --border: #191c1e;
+  --input: #ffffff;
+  --ring: #93000b;
+  --radius: 0px;
+  --sidebar: #f3f4f6;
+  --sidebar-foreground: #191c1e;
+  --sidebar-primary: #93000b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e1e2e4;
+  --sidebar-accent-foreground: #191c1e;
+  --sidebar-border: #191c1e;
+  --sidebar-ring: #93000b;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    border-radius: 0 !important;
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-space-mono), 'Space Mono', monospace;
   }
+}
+
+/* ─── Neo-Brutalist Hard Shadows ──────────────────────── */
+.shadow-brutal {
+  box-shadow: 8px 8px 0 0 #191c1e;
+}
+.shadow-brutal-sm {
+  box-shadow: 4px 4px 0 0 #191c1e;
+}
+.shadow-brutal-lg {
+  box-shadow: 12px 12px 0 0 #191c1e;
+}
+.shadow-brutal-red {
+  box-shadow: 8px 8px 0 0 #93000b;
+}
+
+/* ─── Brutalist Button Active State ───────────────────── */
+.btn-brutal {
+  border: 4px solid #191c1e;
+  box-shadow: 8px 8px 0 0 #191c1e;
+  transition: box-shadow 0.05s, transform 0.05s;
+}
+.btn-brutal:active {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0 0 #191c1e;
+}
+.btn-brutal:hover {
+  background-color: #93000b;
+  color: #ffffff;
 }
 
 /* ─── 교수 흔들림 ─────────────────────────────────────── */
@@ -106,66 +129,78 @@
   animation: prof-shake 0.1s linear;
 }
 
-/* ─── S2-02: 스캔라인 오버레이 ───────────────────────── */
-.scanlines::after {
-  content: '';
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    rgba(0, 0, 0, 0.18) 3px,
-    rgba(0, 0, 0, 0.18) 4px
-  );
-  mix-blend-mode: multiply;
+/* ─── 할프톤 닷 배경 패턴 ─────────────────────────────── */
+.bg-halftone {
+  background-color: #f8f9fb;
+  background-image: radial-gradient(circle, #d9dadc 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
 }
 
-/* ─── S2-02: STRESS RELIEF ZONE 깜박임 ──────────────── */
-@keyframes text-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0.15; }
-}
-.animate-text-blink {
-  animation: text-blink 0.9s step-end infinite;
-}
-
-/* ─── S2-02: 배경 격자 패턴 ─────────────────────────── */
-.bg-grid-pattern {
-  background-image:
-    linear-gradient(rgba(255, 60, 30, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 60, 30, 0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* ─── S2-03: HP 위기 화면 테두리 펄스 ───────────────── */
+/* ─── HP 위기 화면 테두리 펄스 ───────────────────────── */
 @keyframes danger-pulse {
-  0%, 100% { box-shadow: inset 0 0 0px rgba(220, 30, 10, 0); }
-  50%       { box-shadow: inset 0 0 60px rgba(220, 30, 10, 0.55); }
+  0%, 100% { box-shadow: inset 0 0 0px rgba(147, 0, 11, 0); }
+  50%       { box-shadow: inset 0 0 80px rgba(147, 0, 11, 0.5); }
 }
 .animate-danger-pulse {
   animation: danger-pulse 0.7s ease-in-out infinite;
 }
 
-/* ─── S2-05: 종강 배경 골드 그라디언트 ──────────────── */
-@keyframes end-bg-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* ─── HP 바 shimmer ──────────────────────────────────── */
+@keyframes bar-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
 }
+.animate-bar-shimmer {
+  animation: bar-shimmer 2s linear infinite;
+}
+
+/* ─── 종강 화면 배경 (Explosion 이미지 폴백) ─────────── */
 .bg-end-screen {
-  background: radial-gradient(ellipse at 50% 40%, oklch(0.75 0.18 85), oklch(0.45 0.16 60) 60%, oklch(0.18 0.04 40));
-  animation: end-bg-in 0.6s ease-out both;
+  background-color: #f8f9fb;
+  background-image:
+    radial-gradient(ellipse at 30% 40%, rgba(147, 0, 11, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 60%, rgba(147, 0, 11, 0.1) 0%, transparent 50%);
 }
 
-/* ─── S2-05: 종강 텍스트 반짝임 ─────────────────────── */
-@keyframes shimmer {
-  0%   { text-shadow: 0 0 8px rgba(255,220,80,0.3); }
-  50%  { text-shadow: 0 0 30px rgba(255,220,80,0.9), 0 0 60px rgba(255,180,30,0.5); }
-  100% { text-shadow: 0 0 8px rgba(255,220,80,0.3); }
+/* ─── "VICTORY!!" 텍스트 스타일 ──────────────────────── */
+@keyframes victory-stamp {
+  0%   { transform: scale(3) rotate(-5deg); opacity: 0; }
+  60%  { transform: scale(0.95) rotate(1deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
-.animate-shimmer {
-  animation: shimmer 2s ease-in-out infinite;
+.animate-victory-stamp {
+  animation: victory-stamp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 
+/* ─── Floating damage text ────────────────────────────── */
+@keyframes float-up {
+  0%   { opacity: 1; transform: translateY(0) rotate(var(--dmg-rot, -10deg)); }
+  100% { opacity: 0; transform: translateY(-60px) rotate(var(--dmg-rot, -10deg)); }
+}
+.animate-float-up {
+  animation: float-up 1s ease-out forwards;
+}
+
+/* ─── Neo-Brutalist Input Focus ──────────────────────── */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #93000b !important;
+  box-shadow: 4px 4px 0 0 #93000b !important;
+}
+
+/* ─── Anton 폰트를 헤드라인에 강제 적용 ─────────────── */
+.font-headline {
+  font-family: var(--font-anton), 'Anton', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+.font-label-mono {
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.font-body-mono {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+}

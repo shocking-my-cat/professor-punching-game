@@ -1,0 +1,124 @@
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}body{border:4px solid #191c1e;min-height:100vh;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={theme:{extend:{"colors":{"surface-container-high":"#e7e8ea","surface-tint":"#b91c1c","on-error-container":"#93000a","surface-variant":"#e1e2e4","secondary-fixed-dim":"#c6c6c6","secondary-fixed":"#e2e2e2","error":"#ba1a1a","on-error":"#ffffff","error-container":"#ffdad6","primary":"#93000b","on-surface-variant":"#5b403d","on-tertiary-fixed":"#1a1c1c","secondary-container":"#e2e2e2","outline":"#8f6f6c","primary-container":"#b91c1c","on-tertiary":"#ffffff","on-secondary-container":"#646464","surface-dim":"#d9dadc","tertiary-fixed":"#e2e2e2","surface":"#f8f9fb","surface-container":"#edeef0","secondary":"#5e5e5e","surface-container-lowest":"#ffffff","inverse-on-surface":"#f0f1f3","on-background":"#191c1e","on-secondary":"#ffffff","on-primary-fixed":"#410002","inverse-surface":"#2e3132","on-secondary-fixed-variant":"#474747","primary-fixed":"#ffdad6","on-secondary-fixed":"#1b1b1b","tertiary-fixed-dim":"#c6c6c7","surface-container-highest":"#e1e2e4","primary-fixed-dim":"#ffb4ab","on-surface":"#191c1e","on-tertiary-container":"#d7d8d8","inverse-primary":"#ffb4ab","background":"#f8f9fb","on-primary":"#ffffff","on-primary-fixed-variant":"#93000b","surface-bright":"#f8f9fb","surface-container-low":"#f3f4f6","outline-variant":"#e4beb9","on-primary-container":"#ffcdc7","on-tertiary-fixed-variant":"#454747","tertiary-container":"#5d5e5f"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"lg":"48px","base":"4px","border-width":"4px","md":"24px","sm":"16px","shadow-offset":"8px","xs":"8px","xl":"80px"},"fontFamily":{"headline-lg":["Anton"],"display-lg":["Anton"],"code":["JetBrains Mono"],"body-md":["Space Mono"],"headline-lg-mobile":["Anton"],"label-bold":["JetBrains Mono"],"headline-md":["Anton"],"body-lg":["Space Mono"]},"fontSize":{"headline-lg":["48px",{"lineHeight":"48px","fontWeight":"400"}],"display-lg":["84px",{"lineHeight":"80px","letterSpacing":"-0.02em","fontWeight":"400"}],"code":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["32px",{"lineHeight":"32px","fontWeight":"400"}],"label-bold":["14px",{"lineHeight":"16px","fontWeight":"700"}],"headline-md":["32px",{"lineHeight":"36px","fontWeight":"400"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}]}}}}</script><link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-background font-body-md text-on-background"><header class="fixed top-0 w-full z-50 bg-primary border-b-4 border-on-background shadow-[0_8px_0_0_#191c1e]"><div class="h-20 max-w-7xl mx-auto px-md flex items-center justify-between"><div class="flex items-center gap-sm"><span class="material-symbols-outlined text-on-primary text-[32px]">sports_martial_arts</span><h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-primary uppercase italic tracking-tighter">Professor Punch-Out!!</h1></div><nav class="hidden md:flex items-center gap-md" data-active-classes="bg-on-primary text-primary shadow-[4px_4px_0_0_#191c1e]"><a aria-current="page" class="font-label-bold uppercase px-base py-base border-2 border-transparent hover:border-on-primary transition-all bg-on-primary text-primary shadow-[4px_4px_0_0_#191c1e]" data-path="game-arena" href="#">Fight</a><a class="font-label-bold text-label-bold text-on-primary uppercase px-base py-base border-2 border-transparent hover:border-on-primary transition-all" data-path="hall-of-shame" href="#">Scores</a><a class="font-label-bold text-label-bold text-on-primary uppercase px-base py-base border-2 border-transparent hover:border-on-primary transition-all" data-path="training-room" href="#">Gym</a></nav><div class="flex items-center gap-sm"><div class="w-8 h-8 rounded-full bg-on-primary flex items-center justify-center border-2 border-on-background shadow-[4px_4px_0_0_#191c1e]"><span class="material-symbols-outlined text-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 flex flex-col items-center"><div class="flex flex-col w-full min-h-[calc(100vh-80px)] relative overflow-hidden bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmOGY5ZmIiLz48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjZTElMmV0Ii8+PC9zdmc+')] bg-repeat">
+<!-- Giant HP Bar Section -->
+<div class="w-full px-md md:px-xl py-lg z-10">
+<div class="flex justify-between items-end mb-xs">
+<div class="font-headline-md text-headline-md text-on-background uppercase bg-surface-container-highest px-sm py-base border-border-width border-on-background shadow-[8px_8px_0_0_#191c1e] rotate-[-2deg]">
+        Prof. Dr. Tenured
+      </div>
+<div class="font-label-bold text-label-bold text-primary bg-primary-fixed px-base py-base border-border-width border-on-background shadow-[4px_4px_0_0_#191c1e] rotate-[3deg]">
+        HP 8450/9999
+      </div>
+</div>
+<div class="w-full h-16 md:h-24 bg-surface-container border-border-width border-on-background shadow-[12px_12px_0_0_#191c1e] relative overflow-hidden flex items-center p-base">
+<div class="absolute inset-0 bg-secondary opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMCA4TDggMCJzdHJva2U9IiMxOTFjMWUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==')]"></div>
+<!-- HP Fill -->
+<div class="h-full bg-primary border-border-width border-on-background relative z-10 transition-all duration-300 ease-out flex items-center justify-end pr-sm" style="width: 85%;">
+<!-- Shimmer effect -->
+<div class="absolute top-0 bottom-0 left-0 w-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>
+</div>
+<!-- Damage marker -->
+<div class="absolute top-0 bottom-0 left-[85%] w-1 bg-on-background z-20"></div>
+</div>
+</div>
+<!-- Battle Arena & Avatar -->
+<div class="flex-1 w-full relative flex items-center justify-center p-md z-0 cursor-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjOTMwMDBiIiBzdHJva2U9IiMxOTFjMWUiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE2IDJWMTRNMTYgMTlWMzFNMiAxNkgxNE0xOSAxNkgzMSIvPjwvc3ZnPg==')_16_16,crosshair]">
+<!-- Central Target Container -->
+<div class="relative group">
+<!-- Tacky Name Tag -->
+<div class="absolute -top-16 left-1/2 -translate-x-1/2 z-20 w-max bg-error-container border-border-width border-on-background shadow-[8px_8px_0_0_#191c1e] px-md py-sm rotate-[-5deg] group-hover:rotate-0 transition-transform duration-200">
+<div class="font-label-bold text-label-bold text-on-error-container uppercase tracking-widest text-center border-b-4 border-on-background mb-base pb-base">Hello, My Name Is</div>
+<div class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-error uppercase text-center stroke-on-background" style="-webkit-text-stroke: 2px #191c1e;">
+          DR. PAIN
+        </div>
+<!-- Tape pieces -->
+<div class="absolute -top-3 -left-4 w-12 h-6 bg-surface-container-highest/80 border-2 border-on-background rotate-12"></div>
+<div class="absolute -top-2 -right-3 w-10 h-6 bg-surface-container-highest/80 border-2 border-on-background rotate-[-15deg]"></div>
+</div>
+<!-- Professor Avatar (Placeholder) -->
+<div class="relative z-10 w-64 h-64 md:w-96 md:h-96 border-border-width border-on-background bg-surface-container-lowest shadow-[16px_16px_0_0_#191c1e] overflow-hidden active:translate-x-[8px] active:translate-y-[8px] active:shadow-[8px_8px_0_0_#191c1e] transition-all duration-75">
+<img class="w-full h-full object-cover select-none pointer-events-none" data-alt="A highly stylized, neo-brutalist portrait of an angry academic professor in a tweed jacket with leather elbow patches. He has disheveled hair, wild eyes behind thick black rimmed glasses, and is screaming at the viewer. Background is a chaotic red and white halftone pattern. Comic book art style, thick black linework, flat colors using deep crimson red (#93000b), stark white, and harsh black (#191c1e). No shading, only solid color blocks and halftones." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrp03NARBWXVWWrAQKNQN3dboJKsVu7J8plGZGHGpIRql5vuRf8kMqhsyXvvIInVxI9Jmi1RjygNDkSHL_BMnswf4eBsijMs8y73rgJX7-XkCYYbbR1kDI6dEsxJ_DY8zI2cJO8pra-yyGLA_ssmNt_vGXftapDb4QDJsUzDZ3--4JAajfWtT-o2UfspeNv5Tj4LsheOJOX_SMeZ-LBsMrUW1pqTSOMUyHz80w0TkJ9HjCNC5uWXw81A"/>
+<!-- Hit Flash overlay (hidden by default, triggered by JS) -->
+<div class="absolute inset-0 bg-on-background mix-blend-difference opacity-0 pointer-events-none" id="hit-flash"></div>
+</div>
+<!-- Floating Damage Labels (Static for visual layout, JS would animate these) -->
+<div class="absolute -top-4 -left-12 font-headline-md text-headline-md text-primary bg-primary-fixed border-border-width border-on-background px-sm py-base shadow-[4px_4px_0_0_#191c1e] rotate-[-12deg] z-30 pointer-events-none">
+        -10
+      </div>
+<div class="absolute top-1/4 -right-16 font-headline-lg text-headline-lg text-error bg-surface border-border-width border-on-background px-md py-sm shadow-[8px_8px_0_0_#191c1e] rotate-[15deg] scale-125 z-30 pointer-events-none">
+        -CRIT!
+      </div>
+<div class="absolute bottom-8 -left-8 font-headline-md text-headline-md text-on-primary bg-primary border-border-width border-on-background px-sm py-base shadow-[4px_4px_0_0_#191c1e] rotate-[8deg] z-30 pointer-events-none">
+        -10
+      </div>
+</div>
+</div>
+<!-- Action Bar (Bottom) -->
+<div class="w-full bg-surface-container-high border-t-border-width border-on-background p-md flex flex-wrap md:flex-nowrap gap-md justify-center z-20">
+<button class="flex-1 md:flex-none w-full md:w-48 bg-primary hover:bg-primary-container text-on-primary font-headline-md text-headline-md uppercase py-sm px-md border-border-width border-on-background shadow-[8px_8px_0_0_#191c1e] active:translate-x-[4px] active:translate-y-[4px] active:shadow-[4px_4px_0_0_#191c1e] transition-all">
+      Punch
+    </button>
+<button class="flex-1 md:flex-none w-full md:w-48 bg-secondary hover:bg-on-background text-on-secondary font-headline-md text-headline-md uppercase py-sm px-md border-border-width border-on-background shadow-[8px_8px_0_0_#191c1e] active:translate-x-[4px] active:translate-y-[4px] active:shadow-[4px_4px_0_0_#191c1e] transition-all">
+      Defend
+    </button>
+<button class="flex-1 md:flex-none w-full md:w-48 bg-error hover:bg-on-error-container text-on-error font-headline-md text-headline-md uppercase py-sm px-md border-border-width border-on-background shadow-[8px_8px_0_0_#191c1e] active:translate-x-[4px] active:translate-y-[4px] active:shadow-[4px_4px_0_0_#191c1e] transition-all relative overflow-hidden group">
+<span class="relative z-10">Special</span>
+<div class="absolute inset-0 bg-primary-fixed-dim/30 translate-y-full group-hover:translate-y-0 transition-transform duration-200"></div>
+</button>
+</div>
+<style>
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+  </style>
+<script>
+    // Simple script to demonstrate hit effect on the avatar area
+    document.addEventListener('DOMContentLoaded', () => {
+      const avatarContainer = document.querySelector('.group .relative.z-10');
+      const flash = document.getElementById('hit-flash');
+      const container = document.querySelector('.flex-1.w-full');
+
+      avatarContainer.addEventListener('mousedown', (e) => {
+        // Flash effect
+        flash.style.opacity = '1';
+        setTimeout(() => {
+          flash.style.opacity = '0';
+        }, 50);
+
+        // Create floating damage number
+        const dmg = document.createElement('div');
+        dmg.textContent = '-10';
+        dmg.className = 'absolute font-headline-md text-headline-md text-primary bg-primary-fixed border-border-width border-on-background px-sm py-base shadow-[4px_4px_0_0_#191c1e] z-30 pointer-events-none select-none';
+        
+        // Random positioning near click
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left + (Math.random() * 40 - 20);
+        const y = e.clientY - rect.top + (Math.random() * 40 - 20);
+        
+        const rotation = Math.random() * 30 - 15;
+        
+        dmg.style.left = `${x}px`;
+        dmg.style.top = `${y}px`;
+        dmg.style.transform = `rotate(${rotation}deg)`;
+        
+        container.appendChild(dmg);
+
+        // Animate up and fade out
+        let op = 1;
+        let pos = 0;
+        const anim = setInterval(() => {
+          pos += 2;
+          op -= 0.05;
+          dmg.style.transform = `rotate(${rotation}deg) translateY(-${pos}px)`;
+          dmg.style.opacity = op;
+          if (op <= 0) {
+            clearInterval(anim);
+            dmg.remove();
+          }
+        }, 16);
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-on-background text-on-primary py-lg border-t-4 border-primary mt-xl"><div class="max-w-7xl mx-auto px-md flex flex-col md:flex-row justify-between items-center gap-md"><div class="font-headline-md text-headline-md uppercase">Tenure Denied © 1994</div><div class="flex gap-sm"><span class="material-symbols-outlined">videogame_asset</span><span class="material-symbols-outlined">skull</span><span class="material-symbols-outlined">warning</span></div><div class="font-code text-code">V.0.6.9-BETA</div></div></footer></body></html>
