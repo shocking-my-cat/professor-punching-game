@@ -16,9 +16,20 @@ const notoSerifKr = Noto_Serif_KR({
 })
 
 export const metadata: Metadata = {
-  title: '가상 교수님 응징 게임',
-  description: '스트레스 해소용 B급 클릭 게임 - 교수님을 소환해서 종강하세요!',
-  generator: 'v0.app',
+  title: '개강버ㅋ킹웹사이트 — 가상 교수님 응징 게임',
+  description:
+    '교수님 이름과 외모를 입력하면 가상 소환! HP를 0으로 만들면 하을 학기가 종강됩니다. 대학생 스트레스 해소용 B급 클릭 게임.',
+  openGraph: {
+    title: '가상 교수님 응징 게임 👊',
+    description: '교수님을 소환해서 종강하세요! 클릭하는 만큼 HP가 떨어집니다.',
+    type: 'website',
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary',
+    title: '가상 교수님 응징 게임 👊',
+    description: '교수님을 소환해서 종강하세요!',
+  },
   icons: {
     icon: [
       {
@@ -39,11 +50,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'dark',
+  themeColor: '#1e0a08',
 }
 
 export default function RootLayout({

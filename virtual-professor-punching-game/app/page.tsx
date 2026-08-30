@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { InputScreen } from '@/components/input-screen'
 import { PlayingScreen } from '@/components/playing-screen'
@@ -18,12 +18,13 @@ export default function Page() {
   const [hp, setHp] = useState(INITIAL_HP)
   const [damageTexts, setDamageTexts] = useState<DamageText[]>([])
 
-  function handleSummon() {
+  // S3-02: useCallback으로 핸들러 메모이제이션
+  const handleSummon = useCallback(() => {
     if (!profName.trim()) return
     setStep('playing')
-  }
+  }, [profName])
 
-  function handleHit(e: React.MouseEvent) {
+  const handleHit = useCallback((e: React.MouseEvent) => {
     const x = e.clientX
     const y = e.clientY
     const id = Date.now() + Math.random()
@@ -38,19 +39,19 @@ export default function Page() {
       }
       return next
     })
-  }
+  }, [])
 
-  function removeDamageText(id: number) {
+  const removeDamageText = useCallback((id: number) => {
     setDamageTexts((prev) => prev.filter((d) => d.id !== id))
-  }
+  }, [])
 
-  function handleReset() {
+  const handleReset = useCallback(() => {
     setStep('input')
     setProfName('')
     setProfDesc('')
     setHp(INITIAL_HP)
     setDamageTexts([])
-  }
+  }, [])
 
   return (
     <main className="min-h-screen w-full overflow-hidden bg-background font-sans text-foreground">

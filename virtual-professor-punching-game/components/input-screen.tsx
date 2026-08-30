@@ -38,7 +38,13 @@ export function InputScreen({
             <Skull className="h-6 w-6 animate-bounce" />
           </div>
 
-          <div className="px-10 py-10">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              if (canSummon) onSummon()
+            }}
+            className="px-10 py-10"
+          >
             <h1 className="text-balance text-center text-5xl leading-tight text-foreground">
               가상 교수님 <span className="text-primary">응징</span> 게임
             </h1>
@@ -59,9 +65,11 @@ export function InputScreen({
                   type="text"
                   value={profName}
                   maxLength={10}
+                  aria-required="true"
+                  aria-label="교수님 성함 입력"
                   onChange={(e) => {
-                    // S1-01: 특수문자 제외 — 한글·영문·숫자·공백만 허용
-                    const filtered = e.target.value.replace(/[^가-힣a-zA-Z0-9\s]/g, '')
+                    // S1-01: 특수문자 제외 — 한글(자음/모음 포함)·영문·숫자·공백만 허용
+                    const filtered = e.target.value.replace(/[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\s]/g, '')
                     setProfName(filtered)
                   }}
                   placeholder="당신을 괴롭히는 교수님의 이름을 알려주세요."
@@ -81,6 +89,7 @@ export function InputScreen({
                   value={profDesc}
                   maxLength={50}
                   rows={3}
+                  aria-label="교수님 특징 입력"
                   onChange={(e) => setProfDesc(e.target.value)}
                   placeholder="교수님은 어떻게 생기셨나요? (최대 50자)"
                   className="w-full resize-none rounded-xl border-2 border-border bg-input px-4 py-4 text-lg text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
@@ -92,9 +101,9 @@ export function InputScreen({
             </div>
 
             <motion.button
-              type="button"
-              onClick={onSummon}
+              type="submit"
               disabled={!canSummon}
+              aria-label="교수님 소환하기 버튼"
               whileHover={canSummon ? { scale: 1.03 } : undefined}
               whileTap={canSummon ? { scale: 0.97 } : undefined}
               animate={
@@ -107,7 +116,7 @@ export function InputScreen({
             >
               🔥 교수님 소환하기 🔥
             </motion.button>
-          </div>
+          </form>
         </div>
       </div>
     </motion.section>
