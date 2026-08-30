@@ -26,16 +26,16 @@ export function InputScreen({
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 1.04 }}
       transition={{ duration: 0.35 }}
-      className="flex min-h-screen w-full items-center justify-center p-8"
+      className="scanlines bg-grid-pattern flex min-h-screen w-full items-center justify-center p-8"
     >
       <div className="relative w-full max-w-2xl">
         {/* tacky glowing frame */}
         <div className="absolute -inset-2 rounded-3xl bg-primary/40 blur-2xl" aria-hidden />
         <div className="relative overflow-hidden rounded-3xl border-4 border-primary bg-card shadow-2xl">
           <div className="flex items-center justify-center gap-3 bg-primary px-6 py-3 text-primary-foreground">
-            <Skull className="h-6 w-6" />
-            <span className="text-lg tracking-widest">STRESS RELIEF ZONE</span>
-            <Skull className="h-6 w-6" />
+            <Skull className="h-6 w-6 animate-bounce" />
+            <span className="animate-text-blink text-lg tracking-widest">STRESS RELIEF ZONE</span>
+            <Skull className="h-6 w-6 animate-bounce" />
           </div>
 
           <div className="px-10 py-10">

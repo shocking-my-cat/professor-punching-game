@@ -32,6 +32,8 @@ export function PlayingScreen({
   const shakeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const hpPct = (hp / maxHp) * 100
+  const isDanger = hpPct <= 30 && !exploding
+  const isCritical = hpPct <= 10 && !exploding
 
   function handleClick(e: React.MouseEvent) {
     onHit(e)
@@ -48,22 +50,31 @@ export function PlayingScreen({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="relative flex min-h-screen w-full flex-col items-center justify-start px-8 pt-12"
+      className={`bg-grid-pattern relative flex min-h-screen w-full flex-col items-center justify-start px-8 pt-12 transition-colors duration-500 ${
+        isDanger ? 'animate-danger-pulse' : ''
+      }`}
       style={{ cursor: 'crosshair' }}
     >
       {/* HP BAR */}
       <div className="w-4/5 max-w-5xl">
         <div className="mb-2 flex items-end justify-between">
-          <span className="flex items-center gap-2 text-2xl text-primary">
-            <Heart className="h-6 w-6 fill-primary" /> HP
+          <span className={`flex items-center gap-2 text-2xl text-primary ${isDanger ? 'animate-pulse' : ''}`}>
+            {/* S2-03: HP 위기 시 Heart 빠른 펄스 */}
+            <Heart className={`h-6 w-6 fill-primary ${isCritical ? 'animate-bounce' : ''}`} /> HP
           </span>
-          <span className="font-mono text-3xl text-foreground">
+          <span className={`font-mono text-3xl ${isDanger ? 'text-primary animate-pulse' : 'text-foreground'}`}>
             {hp} <span className="text-muted-foreground">/ {maxHp}</span>
           </span>
         </div>
         <div className="h-12 w-full overflow-hidden rounded-full border-4 border-foreground/20 bg-secondary">
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
+            className={`h-full rounded-full ${
+              isCritical
+                ? 'bg-gradient-to-r from-red-700 to-red-400'
+                : isDanger
+                ? 'bg-gradient-to-r from-orange-600 to-red-500'
+                : 'bg-gradient-to-r from-primary to-accent'
+            }`}
             animate={{ width: `${hpPct}%` }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           />
